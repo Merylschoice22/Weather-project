@@ -44,35 +44,40 @@ const showWeatherInfo = (weatherObject) => {
   const weatherIcon = document.createElement("div");
   weatherIcon.className = "weather-icon";
   weatherContainer.appendChild(weatherIcon);
+
   const weatherIconIMG = document.createElement("img");
   const iconID = icon.slice(1);
   weatherIconIMG.setAttribute("src", `icons/${iconID}.png`);
-  weatherIcon.appendChild(weatherIcon);
+  weatherIcon.appendChild(weatherIconIMG);
 
-  const weatherIcon = document.createElement("div");
-  container.className = "weather-icon";
-  weatherContainer.appendChild(weatherIcon);
+  const temperatureValue = document.createElement("div");
+  temperatureValue.className = "temperature-value";
+  weatherContainer.appendChild(temperatureValue);
+
+  const temperatureValueP = document.createElement("p");
+  temperatureValueP.innerHTML = `${temp}° <span>C</span>`;
+  temperatureValue.appendChild(temperatureValueP);
+  const temperatureDescription = document.createElement("div");
+  temperatureDescription.className = "temperature-description";
+  weatherContainer.appendChild(temperatureDescription);
   const descriptionP = document.createElement("p");
-
-  querySelector(".temperature-description p");
+  descriptionP.innerText = description;
+  temperatureDescription.appendChild(descriptionP);
   //   const [descriptionDiv] = descriptionElements;
   //   const desc = weatherObject.weather.description;
-  descriptionP.innerText = description;
-
-  const locationP = document.querySelector(".location p");
+  const location = document.createElement("div");
+  location.className = "location";
+  weatherContainer.appendChild(location);
+  const locationP = document.createElement("p");
   locationP.innerText = `${city_name} - ${country_code}`;
-
-  const temperatureValueP = document.querySelector(".temperature-value p");
-  temperatureValueP.innerHTML = `${temp}° <span>C</span>`;
-
-  const weatherIconIMG = document.querySelector(".weather-icon img");
-  const iconID = icon.slice(1);
-  weatherIconIMG.setAttribute("src", `icons/${iconID}.png`);
+  location.appendChild(locationP);
 };
 
 cities.forEach((city) => {
   callWeatherAPIByCity(city);
 });
+
+// callWeatherAPIByCity(cityInput);
 
 //////////////////////////////////////////
 
